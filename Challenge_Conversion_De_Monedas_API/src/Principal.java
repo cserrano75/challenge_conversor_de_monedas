@@ -12,6 +12,8 @@ public class Principal {
     public static void main(String[] args) {
 
         Scanner opcionMenu = new Scanner(System.in);
+        String monedaOrigen="";
+        String monedaDestino="";
 
         GsonBuilder gsonBuilder = new GsonBuilder();
         Gson gson = gsonBuilder.create();
@@ -19,6 +21,9 @@ public class Principal {
         gsonBuilder.setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE);
 
         while (true) {
+
+            double valorConversion=0.0;
+
             System.out.println("*********************************************************");
             System.out.println("Bienvenido(a) al conversor de monedas!! " + "\n" +
                     "Ingrese la opción del menu, según la conversión que desea realizar: " + "\n");
@@ -37,12 +42,13 @@ public class Principal {
 
                 switch(busqueda) {
                     case "1":
+
                         System.out.println("Ingrese el valor que desea convertir");
 
-                        Scanner valorConversion = new Scanner(System.in);
-                        String monedaOrigen="USD";
-                        String monedaDestino="ARS";
+                        valorConversion = opcionMenu.nextDouble();
 
+                        monedaOrigen="USD";
+                        monedaDestino="ARS";
 
                         break;
                     case "2":
@@ -53,9 +59,11 @@ public class Principal {
                         break;
                 }
 
-            String linkApi = "https://v6.exchangerate-api.com/v6/c20a1c91eaf3bb998dd79e03/pair" + "/"+monedaOrigen+"/";
-            HttpClient client = HttpClient.newHttpClient();
-            HttpRequest request = HttpRequest.newBuilder()
+            String linkApi = "https://v6.exchangerate-api.com/v6/c20a1c91eaf3bb998dd79e03/pair" + "/" + monedaOrigen + "/"
+                    + monedaDestino + "/" +valorConversion;
+
+                HttpClient client = HttpClient.newHttpClient();
+                HttpRequest request = HttpRequest.newBuilder()
                     .uri(URI.create(linkApi))
                     .build();
 
@@ -73,8 +81,9 @@ public class Principal {
 
             RegistroDeConversion miRegistroDeConversion = gson.fromJson(json, RegistroDeConversion.class);
             System.out.println(json);
+            System.out.println("Fin");
 
         }
-    }
 
+    }
 }
