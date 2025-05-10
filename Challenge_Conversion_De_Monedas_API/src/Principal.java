@@ -16,13 +16,14 @@ public class Principal {
         String monedaDestino="";
 
         GsonBuilder gsonBuilder = new GsonBuilder();
-        Gson gson = gsonBuilder.create();
+        Gson gson =  gsonBuilder.setPrettyPrinting().create();
+        gsonBuilder.setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE);
 
         gsonBuilder.setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE);
 
         while (true) {
 
-            double valorConversion=0.0;
+            String valorConversion="";
 
             System.out.println("*********************************************************");
             System.out.println("Bienvenido(a) al conversor de monedas!! " + "\n" +
@@ -38,18 +39,18 @@ public class Principal {
             System.out.println("*********************************************************");
             System.out.println("Elija una opción válida:");
 
-            var busqueda = opcionMenu.nextLine();
+            var opcionDeUsuario = opcionMenu.nextLine();
 
-                switch(busqueda) {
+            if (opcionDeUsuario.equalsIgnoreCase("salir")){
+                System.out.println("Proceso Finalizado!!");
+                break;
+            }else
+                switch(opcionDeUsuario) {
                     case "1":
-
                         System.out.println("Ingrese el valor que desea convertir");
-
-                        valorConversion = opcionMenu.nextDouble();
-
+                        valorConversion = opcionMenu.nextLine();
                         monedaOrigen="USD";
                         monedaDestino="ARS";
-
                         break;
                     case "2":
                         System.out.println("Opcion2");
@@ -57,31 +58,39 @@ public class Principal {
                         break;
                     case "7":
                         break;
+                    default:
+                        System.out.println("La opcion ingresada no es valida");
+                        break;
                 }
 
-            String linkApi = "https://v6.exchangerate-api.com/v6/c20a1c91eaf3bb998dd79e03/pair" + "/" + monedaOrigen + "/"
-                    + monedaDestino + "/" +valorConversion;
-
-                HttpClient client = HttpClient.newHttpClient();
-                HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create(linkApi))
-                    .build();
-
-            HttpResponse<String> response = null;
             try {
+                String linkApi = "https://v6.exchangerate-api.com/v6/c20a1c91eaf3bb998dd79e03/pair" + "/" + monedaOrigen + "/"
+                        + monedaDestino + "/" +valorConversion;
+
+                    HttpClient client = HttpClient.newHttpClient();
+                    HttpRequest request = HttpRequest.newBuilder()
+                        .uri(URI.create(linkApi))
+                        .build();
+
+                HttpResponse<String> response = null;
+
                 response = client
                         .send(request, HttpResponse.BodyHandlers.ofString());
+                String json = null;
+                if (response != null) {
+                    json = response.body();
+                }
+
+                RegistroDeConversion miRegistroDeConversion = gson.fromJson(json, RegistroDeConversion.class);
+
+                System.out.println(valorConversion + " [" +miRegistroDeConversion.base_code()+"]" +
+                        " corresponden a : " +miRegistroDeConversion.conversion_result()+
+                        " ["+miRegistroDeConversion.target_code()+"]");
+
             } catch (Exception e) {
                 System.out.println("Ocurrio un error");
                 System.out.println(e.getMessage());
-
             }
-
-            String json = response.body();
-
-            RegistroDeConversion miRegistroDeConversion = gson.fromJson(json, RegistroDeConversion.class);
-            System.out.println(json);
-            System.out.println("Fin");
 
         }
 

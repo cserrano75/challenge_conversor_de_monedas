@@ -1,3 +1,3 @@
-public record RegistroDeConversion(String monedaDeOrigen, String monedaDeDestino, Double resultadoConversio) {
+public record RegistroDeConversion(String base_code, String target_code, String conversion_result) {
 
 }
