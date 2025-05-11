@@ -1,8 +1,26 @@
 [
   {
+    "base_code": "USD",
+    "target_code": "ARS",
+    "conversion_result": "2227160",
+    "conversion_rate": 1113.58
+  },
+  {
+    "base_code": "ARS",
+    "target_code": "USD",
+    "conversion_result": "134.7",
+    "conversion_rate": 8.98E-4
+  },
+  {
+    "base_code": "USD",
+    "target_code": "BRL",
+    "conversion_result": "8497.65",
+    "conversion_rate": 5.6651
+  },
+  {
     "base_code": "BRL",
     "target_code": "USD",
-    "conversion_result": "35.24",
+    "conversion_result": "12334",
     "conversion_rate": 0.1762
   }
 ]
