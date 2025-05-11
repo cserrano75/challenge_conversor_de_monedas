@@ -1,14 +1,24 @@
+
+  ![Logo](https://github.com/user-attachments/assets/c86375d5-a39e-4102-81ff-61eb36de76ae)
+
+
 # <h1 align="center"> Challenge - Conversor de Monedas </h1>
 
 <h2>Desarrollo basado en JAVA y consumo de API,s.</h2>
 
 <h2>Descripción del Proyecto</h2>
 
-<h3>Desarrollo de una aplicación que permita convertir monedas de diferentes paises, 
-  utilizando lenguaje JAVA, aplicando el consumo de API's</h3>
+<h3>Aplicación web que permite convertir entre 6 tipos de monedas, 
+  desarrollada con lenguaje JAVA y aplicando el consumo de API's</h3>
 
-  <h4>Decripcion de uso de la aplicacion:</h4>
+
+## :hammer:Funcionalidades del proyecto
+
+- `Monedas de uso común`: permite el uso de las monedas mas utilizadas en latinoamerica
+- `Tasa de cambio real`: el usuario puede visualizar la tasa de cambio aplica para comprobar el calculo
+- `Informacion detallada`: el sistema entrega el resumen de la operacion realizada
+- `Confiabilidad`: el sistema utiliza infromacion de https://www.exchangerate-api.com/ para realizar los calculos
   
 
 > [!TIP]
-> Helpful advice for doing things better or more easily.
+> Revise los valores ingresados para obtener un resultado valido.
