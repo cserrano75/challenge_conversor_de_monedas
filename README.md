@@ -14,10 +14,10 @@
 
 ## :hammer:Funcionalidades del proyecto
 
-- `Monedas de uso común`: permite el uso de las monedas mas utilizadas en latinoamerica
-- `Tasa de cambio real`: el usuario puede visualizar la tasa de cambio aplica para comprobar el calculo
-- `Informacion detallada`: el sistema entrega el resumen de la operacion realizada
-- `Confiabilidad`: el sistema utiliza infromacion de https://www.exchangerate-api.com/ para realizar los calculos
+- `Monedas de uso común`: permite el uso de las monedas mas utilizadas en latinoamérica.
+- `Tasa de cambio real`: el usuario puede visualizar la tasa de cambio aplica para comprobar el cálculo.
+- `Informacion detallada`: el sistema entrega el resumen de la operacion realizada.
+- `Confiabilidad`: el sistema utiliza infromacion de https://www.exchangerate-api.com/ para realizar los cálculos.
   
 
 > [!TIP]
